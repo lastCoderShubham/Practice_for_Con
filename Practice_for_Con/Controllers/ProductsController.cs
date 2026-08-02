@@ -9,40 +9,28 @@ namespace Practice_for_Con.Controllers
     [Route("api/products")]
     public class ProductsController : ControllerBase
     {
+        Storage storage = new Storage();
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            List<Product> products = new List<Product>()
-            {
 
-                    new Product { Id = 1, Name = "Laptop" },
-                    new Product { Id = 2, Name = "Mouse" }
-
-             };
-
-            var result = products.Find(x => x.Id == id);
+            var result = storage.Products.Find(x => x.Id == id);
 
             if (result == null)
             {
                 return BadRequest();
             }
-            return Ok(products[id - 1]);
+            return Ok(result);
 
         }
-
+        //[Route("api/products/search")]
         [HttpGet("search")]
         public ActionResult<Product> Search([FromQuery] string name)
         {
-            List<Product> products = new List<Product>()
-            {
+            
 
-                    new Product { Id = 1, Name = "Laptop" },
-                    new Product { Id = 2, Name = "Mouse" }
-
-             };
-
-            var product = products.Where(x => x.Name == name).FirstOrDefault(); 
+            var product = storage.Products.Where(x => x.Name == name).FirstOrDefault(); 
 
             if (product == null)
             {
@@ -50,6 +38,19 @@ namespace Practice_for_Con.Controllers
             }
 
             return Ok(product);
+        }
+
+        [HttpPost("{product}")]
+        public IActionResult Create( Product product)
+        {
+
+            if(product.Id == null || product.Name == null)
+            {
+                return BadRequest();
+            }
+
+            storage.Products.Add(product);
+            return CreatedAtAction(nameof(GetById),new {id = product.Id}, product);
         }
     }
 }
