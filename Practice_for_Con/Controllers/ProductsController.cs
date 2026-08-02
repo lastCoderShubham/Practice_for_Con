@@ -1,6 +1,4 @@
-﻿using System.Collections.Immutable;
-using System.Reflection.Metadata.Ecma335;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Practice_for_Con.Models;
 
 namespace Practice_for_Con.Controllers
@@ -9,13 +7,12 @@ namespace Practice_for_Con.Controllers
     [Route("api/products")]
     public class ProductsController : ControllerBase
     {
-        Storage storage = new Storage();
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
 
-            var result = storage.Products.Find(x => x.Id == id);
+            var result = Storage.Products.Find(x => x.Id == id);
 
             if (result == null)
             {
@@ -30,7 +27,7 @@ namespace Practice_for_Con.Controllers
         {
             
 
-            var product = storage.Products.Where(x => x.Name == name).FirstOrDefault(); 
+            var product = Storage.Products.Where(x => x.Name == name).FirstOrDefault(); 
 
             if (product == null)
             {
@@ -40,7 +37,7 @@ namespace Practice_for_Con.Controllers
             return Ok(product);
         }
 
-        [HttpPost("{product}")]
+        [HttpPost]
         public IActionResult Create( Product product)
         {
 
@@ -49,8 +46,20 @@ namespace Practice_for_Con.Controllers
                 return BadRequest();
             }
 
-            storage.Products.Add(product);
+            Storage.Products.Add(product);
             return CreatedAtAction(nameof(GetById),new {id = product.Id}, product);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, string name)
+        {
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+
+            Storage.Products[id -1].Name = name;
+            return NoContent();
         }
     }
 }

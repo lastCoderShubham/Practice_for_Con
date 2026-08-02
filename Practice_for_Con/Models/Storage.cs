@@ -2,7 +2,7 @@
 {
     public class Storage
     {
-        public List<Product> Products = new List<Product>()
+        public static List<Product> Products = new List<Product>()
 
         { 
 
