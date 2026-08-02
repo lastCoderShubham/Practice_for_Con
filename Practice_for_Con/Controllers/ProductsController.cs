@@ -20,13 +20,10 @@ namespace Practice_for_Con.Controllers
                     new Product { Id = 2, Name = "Mouse" }
 
              };
-            List<int> ids = new List<int>();
-            foreach(var item in products)
-            {
-                ids.Add(item.Id);
-            }
 
-            if(!ids.Contains(id))
+            var result = products.Find(x => x.Id == id);
+
+            if(result == null)
             {
                 return BadRequest();
             }
