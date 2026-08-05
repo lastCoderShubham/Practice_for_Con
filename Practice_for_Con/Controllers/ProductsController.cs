@@ -63,15 +63,15 @@ namespace Practice_for_Con.Controllers
         }
     }
 }
-SELECT COUNT(*) FROM Employees 
-SELECT SUM(Salary) as TotalSalary FROM Employees
-SELECT AVG(Salary) as AverageSalary from Employees
-Select MAX(Salary) as MaximumSalary from Employees
-Select MIN(Salary) AS LowestSalary FROM Employees
-SELECT Department, COUNT(*) FROM Employees GROUP BY Department;
-SELECT Department, AVG(Salary) FROM Employees GROUP BY Department;
-SELECT Department, AVG(Salary) FROM Employees GROUP BY Department HAVING AVG(Salary) > 70000
-SELECT Department, COUNT(Department) FROM Employees GROUP BY Department HAVING COUNT(*) > 3
-SELECT City, SUM(Salary) FROM Employees GROUP BY City
-SELECT Top 1 Department, AVG(Salary) AverageSalary FROM Employees GROUP BY Department ORDER BY AVG(Salary) DESC
-SELECT Top 1 City, COUNT(*) FROM Employees GROUP BY City ORDER BY COUNT(*) DESC
+SELECT City, COUNT(*) FROM Employees GROUP BY City
+SELECT City, COUNT(*) FROM Employees GROUP BY City HAVING COUNT(*) > 3
+SELECT Department, AVG(Experience) as AverageExperience FROM Employees GROUP BY Department 
+SELECT Department, AVG(Experience) as AverageExperience FROM Employees GROUP BY Department HAVING AVG(Experience) > 5
+SELECT City, MAX(Salary) as MaxSalary FROM Employees GROUP BY City
+SELECT Department, MIN(Salary) as MinSalary FROM Employees GROUP BY Department
+SELECT Department, SUM(Salary) as TotalSalary FROM Employees GROUP BY Department HAVING SUM(SALARY) > 200000
+SELECT City, AVG(Salary) as AverageSalary FROM Employees GROUP BY City HAVING AVG(Salary) > 65000
+SELECT COUNT(*) as TotalEmployees FROM Employees WHERE City = 'Mumbai'
+Select SUM(Salary) TotalSalary FROM Employees WHERE Department = 'IT'
+SELECT Top 1 City, AVG(Salary) as AverageSalary FROM Employees GROUP BY City Order BY AVG(Salary) desc
+SELECT Top 1 Department, COUNT(*) AS TotalEmployees FROM Employees GROUP BY Department ORDER BY COUNT(*) DESC
