@@ -91,12 +91,13 @@ VALUES
 (114,'Simran','IT','Pune',72000,6),
 (115,'Arjun','HR','Mumbai',61000,4);
 
-Select Department, AVG(Salary) AS AverageSalary from Employees group by Department Having AVG(Salary) between 60000 AND 80000
-Select City, SUM(Salary) AS TotalSalary, COUNT(*) AS TotalEmployees from Employees Group by City HAVING SUM(Salary) > 200000 AND COUNT(*) > 2
-Select Department, COUNT(*) AS TotalEmployees from Employees Where Salary > 60000 Group By Department 
-Select City, AVG(Salary) As AverageSalary from Employees Where Experience > 4 Group By City
-Select Department, MIN(Salary) As MinSalary from Employees where Salary > 55000 group BY Department 
-Select Department, Max(Salary) As MaxSalary from Employees where Salary < 80000 group BY Department 
-Select Department, SUM(Salary) AS TotalSalary from Employees Group By Department order by SUM(Salary)
-Select City, COUNT(*) AS TotalEmployees from Employees Group By City Having COUNT(*) > 3
-Select Distinct Department from Employees Where Department LIKE '%i%' or Department LIKE '%i' or Department LIKE 'i%'
+SELECT Department, COUNT(*) FROM Employees WHERE Experience > 4 GROUP BY Department 
+SELECT Department, COUNT(*) AS TotalEmployee FROM Employees WHERE Salary > 60000 group by Department Having COUNT(*) > 1 
+SELECT AVG(Salary) AS AverageSalary FROM Employees Where City = 'Mumbai'
+SELECT SUM(Salary) AS TotalSalary FROM Employees Where Experience BETWEEN 3 AND 6
+SELECT City, MAX(Salary) AS MaxSalary FROM Employees GROUP BY City HAVING MAX(Salary) > 80000
+SELECT Department, MIN(Experience) as MinExperience from Employees Group by Department HAVING MIN(Experience) > 2
+SELECT COUNT(DISTINCT Department) as Departments FROM Employees
+SELECT COUNT(Distinct City) FROM Employees
+SELECT Department, AVG(Salary) AS AverageSalary, COUNT(*) TotalEmployee FROM Employees GROUP BY Department HAVING AVG(Salary) Between 60000 AND 75000 AND COUNT(*) > 2
+SELECT City, SUM(Salary) AS TotalSalary, AVG(Experience) AS AverageExperience FROM Employees GROUP BY City HAVING SUM(Salary) > 200000 AND AVG(Experience) > 4
