@@ -90,3 +90,13 @@ VALUES
 (113,'Kunal','Sales','Mumbai',67000,5),
 (114,'Simran','IT','Pune',72000,6),
 (115,'Arjun','HR','Mumbai',61000,4);
+
+Select Department, AVG(Salary) AS AverageSalary from Employees group by Department Having AVG(Salary) between 60000 AND 80000
+Select City, SUM(Salary) AS TotalSalary, COUNT(*) AS TotalEmployees from Employees Group by City HAVING SUM(Salary) > 200000 AND COUNT(*) > 2
+Select Department, COUNT(*) AS TotalEmployees from Employees Where Salary > 60000 Group By Department 
+Select City, AVG(Salary) As AverageSalary from Employees Where Experience > 4 Group By City
+Select Department, MIN(Salary) As MinSalary from Employees where Salary > 55000 group BY Department 
+Select Department, Max(Salary) As MaxSalary from Employees where Salary < 80000 group BY Department 
+Select Department, SUM(Salary) AS TotalSalary from Employees Group By Department order by SUM(Salary)
+Select City, COUNT(*) AS TotalEmployees from Employees Group By City Having COUNT(*) > 3
+Select Distinct Department from Employees Where Department LIKE '%i%' or Department LIKE '%i' or Department LIKE 'i%'
