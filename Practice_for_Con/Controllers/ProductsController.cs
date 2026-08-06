@@ -101,3 +101,33 @@ SELECT COUNT(DISTINCT Department) as Departments FROM Employees
 SELECT COUNT(Distinct City) FROM Employees
 SELECT Department, AVG(Salary) AS AverageSalary, COUNT(*) TotalEmployee FROM Employees GROUP BY Department HAVING AVG(Salary) Between 60000 AND 75000 AND COUNT(*) > 2
 SELECT City, SUM(Salary) AS TotalSalary, AVG(Experience) AS AverageExperience FROM Employees GROUP BY City HAVING SUM(Salary) > 200000 AND AVG(Experience) > 4
+
+
+    using EFPractice1.Data;
+using Microsoft.EntityFrameworkCore;
+
+
+var options = new DbContextOptionsBuilder<CompanyDbContext>().UseSqlServer("Server = localhost\\SQLEXPRESS; Database: EFCorePrac1; Trusted_Coonection = True; TrustSerevrCertificate = True").Options;
+
+using var context = new CompanyDbContext(options);
+
+Console.WriteLine("DbContext Created SUccessfully");
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using EFPractice1.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace EFPractice1.Data
+{
+    public class CompanyDbContext : DbContext
+    {
+        public CompanyDbContext(DbContextOptions<CompanyDbContext> options) : base(options)
+        { }
+        public DbSet<Employee> Employees { get; set; }
+    }
+}
