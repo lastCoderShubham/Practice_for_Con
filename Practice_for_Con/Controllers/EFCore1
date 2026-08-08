@@ -1,5 +1,1 @@
-Add-Migration InitialCreate
-Build started...
-Build succeeded.
-The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: C:\Users\gauta\source\repos\Test1\Test1\Test1.csproj : warning NU1903: Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc
-PM> 
+Unable to create a 'DbContext' of type 'CompanyDbContext'. The exception 'Unable to resolve service for type 'Microsoft.EntityFrameworkCore.DbContextOptions`1[Test1.Data.CompanyDbContext]' while attempting to activate 'Test1.Data.CompanyDbContext'.' was thrown while attempting to create an instance. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
